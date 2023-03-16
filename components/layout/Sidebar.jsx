@@ -41,7 +41,7 @@ const Sidebar = ({ isSideBarOpen, setIsSideBarOpen }) => {
    return (
       <>
          <nav
-            className={`${isSideBarOpen ?" w-[65px] ":" w-[250px]" } bg-white pl-8 py-6 h-screen fixed overflow-y-auto z-20 transition-transform transform lg:transform-none no-scrollbar  ${
+            className={`${isSideBarOpen ?" w-[80px] ":" w-[250px]" } bg-white pl-3 py-6 h-screen fixed overflow-y-auto z-20 transition-transform transform lg:transform-none no-scrollbar  ${
                isSideBarOpen ? 'translate-0' : '-translate-x-full'
             }`}
          >
