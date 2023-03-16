@@ -23,7 +23,6 @@ import Link from 'next/link';
 import { Menu, MenuItem } from '@mui/material';
 import { useRouter } from 'next/router';
 import { tableSearch } from '../../utils/tableSearch';
-import '.././../styles/globals.css'
  
 /**
  * This is a getServerSideProps function thats help fetch users from server before the page loads
