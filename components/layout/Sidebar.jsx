@@ -1,14 +1,15 @@
-import { Backdrop, Button } from '@mui/material';
+import { IconButton, Backdrop, Button } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { SVG } from '..';
 
+
 const Sidebar = ({ isSideBarOpen, setIsSideBarOpen }) => {
    const { asPath } = useRouter();
-
    // NavItem
    const NavItem = ({ icon, label, link }) => {
+ 
       return (
          <li>
             <Link href={link || `/${label.toLowerCase()}`}>
@@ -22,50 +23,59 @@ const Sidebar = ({ isSideBarOpen, setIsSideBarOpen }) => {
                            : 'text-[#4A5568]'
                      }`}
                      startIcon={icon}
-                     fullWidth
                   >
-                     {label}
+                    {label} 
                   </Button>
                </a>
             </Link>
          </li>
       );
    };
+   
+   function handletoggle(){
+      setIsSideBarOpen(prev => !prev)
+   }
 
    // fuctions
-   const handleBackdropClose = () => {
-      setIsSideBarOpen(!isSideBarOpen);
-   };
 
    return (
       <>
          <nav
-            className={`w-[245px] min-w-[245px] bg-white pl-8 py-6 h-screen fixed overflow-y-auto z-20 transition-transform transform lg:transform-none ${
+            className={`${isSideBarOpen ?" w-[65px] ":" w-[250px]" } bg-white pl-8 py-6 h-screen fixed overflow-y-auto z-20 transition-transform transform lg:transform-none no-scrollbar  ${
                isSideBarOpen ? 'translate-0' : '-translate-x-full'
             }`}
          >
-            <SVG.Logo width='91.2' />
+            <SVG.Logo width={`${isSideBarOpen ? 0 : 91.2 }`}   />
+            <IconButton onClick={handletoggle} className="">
+                <SVG.MenuHamburger />
+               </IconButton>
 
             <ul className='space-y-4 lg:space-y-4 mt-10 lg:mt-16'>
-               <NavItem icon={<SVG.Home />} label='Home' link='/dashboard' />
-               <NavItem icon={<SVG.Users />} label='Users' />
-               <NavItem icon={<SVG.Products />} label='Products' />
+               
+               <NavItem icon={<SVG.Home />} label={`${isSideBarOpen ? "":"Home"}`} link='/dashboard' />
+               <NavItem icon={<SVG.Users />} label={`${isSideBarOpen ? "":"Users"}`} />
+               <NavItem icon={<SVG.Products />} label={`${isSideBarOpen ? "":"Product"}`} />
                {/* <NavItem icon={<SVG.Transactions />} label='Transactions' /> */}
-               <NavItem icon={<SVG.Adminstrators />} label='Adminstrators' />
+               <NavItem icon={<SVG.Adminstrators />} label={`${isSideBarOpen? "":"Administrators"}`} />
                <NavItem
                   icon={<SVG.Roles />}
-                  label='Roles and Priviledges'
+                  label={`${isSideBarOpen ? "":"Roles and Priviledges"}`}
                   link='/roles_and_priviledges'
                />
+            
             </ul>
+            
          </nav>
 
          {/* Backdrop */}
-         <Backdrop
-            open={isSideBarOpen}
+
+      
+{/*        
+          <Backdrop
+            // open={isSideBarOpen}
             onClick={handleBackdropClose}
             sx={{ zIndex: '10' }}
-         />
+            />  */}
       </>
    );
 };

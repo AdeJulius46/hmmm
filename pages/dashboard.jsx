@@ -34,7 +34,7 @@ export default function Home() {
                className='mt-2.5 text-black-80 text-xl lg:text-[40px] lg:leading-[48px] font-bold'
             />
             <span className='text-xs lg:text-base text-black-50 mt-1 lg:mt-3'>
-               {label}
+                       {label}
             </span>
          </div>
       );
